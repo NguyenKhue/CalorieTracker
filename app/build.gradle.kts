@@ -1,20 +1,21 @@
+import com.khue.calorietracker.CalorieTrackerBuildType
+
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.kotlinAndroid)
-    alias(libs.plugins.ksp)
-    kotlin("kapt")
-    id("dagger.hilt.android.plugin")
+    id("calorietracker.android.application")
+    id("calorietracker.android.application.compose")
+    id("calorietracker.android.application.flavors")
+    id("calorietracker.android.application.jacoco")
+    id("calorietracker.android.hilt")
+    id("calorietracker.android.room")
+    id("jacoco")
 }
 
 android {
     namespace = "com.khue.calorietracker"
-    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.khue.calorietracker"
-        minSdk = 24
-        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -25,27 +26,23 @@ android {
     }
 
     buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+
+        debug {
+            applicationIdSuffix = CalorieTrackerBuildType.DEBUG.applicationIdSuffix
+        }
+
+        val release by getting {
+            isMinifyEnabled = true
+            applicationIdSuffix = CalorieTrackerBuildType.RELEASE.applicationIdSuffix
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+
+            // To publish on the Play store a private signing key is required, but to allow anyone
+            // who clones the code to sign and run the release variant, use the debug signing key.
+            // TODO: Abstract the signing configuration to a separate file to avoid hardcoding this.
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.0"
-    }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -63,18 +60,11 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.okHttp.logging.interceptor)
     implementation(libs.moshi.converter)
-    ksp(libs.room.compiler)
-    implementation(libs.room.ktx)
-    implementation(libs.room.runtime)
 
     implementation(libs.androidx.hilt.navigation.compose)
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)
-    implementation(platform(libs.compose.bom))
     implementation(libs.compose.runtime)
     implementation(libs.ui)
     implementation(libs.ui.graphics)
@@ -88,7 +78,6 @@ dependencies {
     testImplementation(libs.mockwebserver)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
     androidTestImplementation(libs.truth)
     androidTestImplementation(libs.coroutines.test)
