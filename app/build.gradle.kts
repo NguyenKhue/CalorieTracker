@@ -53,6 +53,7 @@ android {
 dependencies {
 
     implementation(project(":core"))
+    implementation(project(":core-ui"))
     implementation(project(":onboarding:onboarding_domain"))
     implementation(project(":onboarding:onboarding_presentation"))
     implementation(project(":tracker:tracker_data"))
