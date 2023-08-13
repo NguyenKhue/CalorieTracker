@@ -29,6 +29,7 @@ internal fun Project.configureAndroidCompose(
     commonExtension: CommonExtension<*, *, *, *, *>,
 ) {
     commonExtension.apply {
+
         buildFeatures {
             compose = true
         }
@@ -41,6 +42,38 @@ internal fun Project.configureAndroidCompose(
             val bom = libs.findLibrary("compose.bom").get()
             add("implementation", platform(bom))
             add("androidTestImplementation", platform(bom))
+
+            add("implementation", libs.findLibrary("coil.kt").get())
+            add("implementation", libs.findLibrary("coil.compose").get())
+            add("implementation", libs.findLibrary("androidx.hilt.navigation.compose").get())
+            add("implementation", libs.findLibrary("compose.navigation").get())
+            add("implementation", libs.findLibrary("compose.runtime").get())
+            add("implementation", libs.findLibrary("viewModel.compose").get())
+            add("implementation", libs.findLibrary("material3").get())
+            add("implementation", libs.findLibrary("lifecycle.runtime.ktx").get())
+            add("implementation", libs.findLibrary("activity.compose").get())
+            add("implementation", libs.findLibrary("ui").get())
+            add("implementation", libs.findLibrary("ui.graphics").get())
+            add("implementation", libs.findLibrary("ui.tooling").get())
+            add("implementation", libs.findLibrary("ui.tooling.preview").get())
+
+            add("testImplementation", libs.findLibrary("junit").get())
+            add("testImplementation", libs.findLibrary("androidx.test.ext.junit").get())
+            add("testImplementation", libs.findLibrary("truth").get())
+            add("testImplementation", libs.findLibrary("coroutines.test").get())
+            add("testImplementation", libs.findLibrary("turbine").get())
+            add("testImplementation", libs.findLibrary("mockk").get())
+            add("testImplementation", libs.findLibrary("mockwebserver").get())
+            add("testImplementation", libs.findLibrary("ui.test.junit4").get())
+
+            add("androidTestImplementation", libs.findLibrary("junit").get())
+            add("androidTestImplementation", libs.findLibrary("androidx.test.ext.junit").get())
+            add("androidTestImplementation", libs.findLibrary("truth").get())
+            add("androidTestImplementation", libs.findLibrary("coroutines.test").get())
+            add("androidTestImplementation", libs.findLibrary("turbine").get())
+            add("androidTestImplementation", libs.findLibrary("mockk").get())
+            add("androidTestImplementation", libs.findLibrary("mockwebserver").get())
+            add("androidTestImplementation", libs.findLibrary("ui.test.junit4").get())
         }
     }
 
