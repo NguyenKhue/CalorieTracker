@@ -1,4 +1,4 @@
-package com.khue.calorietracker.onboarding.onboarding_presenstation
+package com.khue.calorietracker.tracker.tracker_presentation
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -20,7 +20,7 @@ class ExampleInstrumentedTest {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals(
-            "com.khue.calorietracker.onboarding.onboarding_presenstation.test",
+            "com.khue.calorietracker.tracker.tracker_presenstation.test",
             appContext.packageName
         )
     }

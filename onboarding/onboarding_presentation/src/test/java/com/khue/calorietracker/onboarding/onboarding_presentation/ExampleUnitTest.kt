@@ -1,4 +1,4 @@
-package com.khue.calorietracker.onboarding.onboarding_presenstation
+package com.khue.calorietracker.onboarding.onboarding_presentation
 
 import org.junit.Test
 

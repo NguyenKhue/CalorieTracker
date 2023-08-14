@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.khue.calorietracker.onboarding.onboarding_presenstation.welcome.WelcomeScreen
+import com.khue.calorietracker.onboarding.onboarding_presentation.welcome.WelcomeScreen
 import com.khue.calorietracker.ui.theme.CalorieTrackerTheme
 import dagger.hilt.android.AndroidEntryPoint
 

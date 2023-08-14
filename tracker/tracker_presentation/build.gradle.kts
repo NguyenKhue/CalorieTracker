@@ -7,7 +7,7 @@ plugins {
 
 
 android {
-    namespace = "com.khue.calorietracker.tracker.tracker_presenstation"
+    namespace = "com.khue.calorietracker.tracker.tracker_presentation"
 }
 
 dependencies {

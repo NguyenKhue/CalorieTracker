@@ -1,4 +1,4 @@
-package com.khue.calorietracker.onboarding.onboarding_presenstation.welcome
+package com.khue.calorietracker.onboarding.onboarding_presentation.welcome
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,7 +16,7 @@ import androidx.compose.ui.text.style.TextAlign
 import com.khue.calorietracker.core.R
 import com.khue.calorietracker.core_ui.DevicePreviews
 import com.khue.calorietracker.core_ui.LocalSpacing
-import com.khue.calorietracker.onboarding.onboarding_presenstation.components.ActionButton
+import com.khue.calorietracker.onboarding.onboarding_presentation.components.ActionButton
 
 @Composable
 fun WelcomeScreen() {

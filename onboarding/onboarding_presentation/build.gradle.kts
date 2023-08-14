@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.khue.calorietracker.onboarding.onboarding_presenstation"
+    namespace = "com.khue.calorietracker.onboarding.onboarding_presentation"
 }
 
 dependencies {

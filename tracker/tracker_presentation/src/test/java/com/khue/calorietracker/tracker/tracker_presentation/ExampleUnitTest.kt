@@ -1,4 +1,4 @@
-package com.khue.calorietracker.tracker.tracker_presenstation
+package com.khue.calorietracker.tracker.tracker_presentation
 
 import org.junit.Test
 
