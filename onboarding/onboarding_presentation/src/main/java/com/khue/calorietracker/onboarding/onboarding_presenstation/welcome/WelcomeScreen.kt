@@ -13,8 +13,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import com.khue.calorietracker.core.R
+import com.khue.calorietracker.core_ui.DevicePreviews
 import com.khue.calorietracker.core_ui.LocalSpacing
 import com.khue.calorietracker.onboarding.onboarding_presenstation.components.ActionButton
 
@@ -26,6 +26,7 @@ fun WelcomeScreen() {
             .fillMaxSize()
             .padding(spacing.spaceMedium),
         verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = stringResource(id = R.string.welcome_text),
@@ -41,7 +42,7 @@ fun WelcomeScreen() {
     }
 }
 
-@Preview(showBackground = true)
+@DevicePreviews
 @Composable
 fun WelcomeScreenPrev() {
     WelcomeScreen()
