@@ -10,10 +10,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.khue.calorietracker.core.navigation.Route
+import com.khue.calorietracker.core.designsystem.ui.theme.CalorieTrackerTheme
+import com.khue.calorietracker.core.preferences.navigation.Route
 import com.khue.calorietracker.navigation.navigate
 import com.khue.calorietracker.onboarding.onboarding_presentation.welcome.WelcomeScreen
-import com.khue.calorietracker.ui.theme.CalorieTrackerTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

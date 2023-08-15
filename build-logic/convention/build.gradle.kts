@@ -50,6 +50,10 @@ gradlePlugin {
             id = "calorietracker.android.feature"
             implementationClass = "AndroidFeatureConventionPlugin"
         }
+        register("androidComposeFeature") {
+            id = "calorietracker.android.feature.compose"
+            implementationClass = "AndroidFeatureComposeConventionPlugin"
+        }
         register("androidLibraryJacoco") {
             id = "calorietracker.android.library.jacoco"
             implementationClass = "AndroidLibraryJacocoConventionPlugin"

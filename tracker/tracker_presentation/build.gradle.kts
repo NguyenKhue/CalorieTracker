@@ -1,6 +1,5 @@
 plugins {
-    id("calorietracker.android.feature")
-    id("calorietracker.android.library.compose")
+    id("calorietracker.android.feature.compose")
     id("calorietracker.android.library.jacoco")
 }
 

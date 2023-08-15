@@ -1,6 +1,5 @@
 plugins {
-    id("calorietracker.android.feature")
-    id("calorietracker.android.library.compose")
+    id("calorietracker.android.feature.compose")
     id("calorietracker.android.library.jacoco")
 }
 
@@ -10,5 +9,4 @@ android {
 
 dependencies {
     implementation(project(":onboarding:onboarding_domain"))
-    implementation(project(":core-ui"))
 }

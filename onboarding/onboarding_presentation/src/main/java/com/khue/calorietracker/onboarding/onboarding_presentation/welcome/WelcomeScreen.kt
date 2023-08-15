@@ -13,11 +13,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import com.khue.calorietracker.core.R
-import com.khue.calorietracker.core.navigation.Route
-import com.khue.calorietracker.core.util.UiEvent
-import com.khue.calorietracker.core_ui.DevicePreviews
-import com.khue.calorietracker.core_ui.LocalSpacing
+import com.khue.calorietracker.core.designsystem.ui.theme.LocalSpacing
+import com.khue.calorietracker.core.preferences.navigation.Route
+import com.khue.calorietracker.core.preferences.util.UiEvent
+import com.khue.calorietracker.core.ui.DevicePreviews
+import com.khue.calorietracker.core.ui.R
 import com.khue.calorietracker.onboarding.onboarding_presentation.components.ActionButton
 
 @Composable
