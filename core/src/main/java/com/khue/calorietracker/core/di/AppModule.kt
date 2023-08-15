@@ -1,4 +1,4 @@
-package com.khue.calorietracker.di
+package com.khue.calorietracker.core.di
 
 import android.app.Application
 import android.content.Context.MODE_PRIVATE
