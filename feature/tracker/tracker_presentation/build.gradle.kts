@@ -9,5 +9,5 @@ android {
 }
 
 dependencies {
-    implementation(project(":tracker:tracker_domain"))
+    implementation(project(":feature:tracker:tracker_domain"))
 }

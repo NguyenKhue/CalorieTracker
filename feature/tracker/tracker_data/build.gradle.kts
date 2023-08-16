@@ -10,7 +10,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":tracker:tracker_domain"))
+    implementation(project(":feature:tracker:tracker_domain"))
     implementation(libs.okHttp)
     implementation(libs.okHttp.logging.interceptor)
     implementation(libs.moshi.converter)
