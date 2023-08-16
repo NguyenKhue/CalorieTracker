@@ -28,13 +28,14 @@
             <option value="$PROJECT_DIR$/core/designsystem" />
             <option value="$PROJECT_DIR$/core/preferences" />
             <option value="$PROJECT_DIR$/core/ui" />
-            <option value="$PROJECT_DIR$/onboarding" />
-            <option value="$PROJECT_DIR$/onboarding/onboarding_domain" />
-            <option value="$PROJECT_DIR$/onboarding/onboarding_presentation" />
-            <option value="$PROJECT_DIR$/tracker" />
-            <option value="$PROJECT_DIR$/tracker/tracker_data" />
-            <option value="$PROJECT_DIR$/tracker/tracker_domain" />
-            <option value="$PROJECT_DIR$/tracker/tracker_presentation" />
+            <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/onboarding" />
+            <option value="$PROJECT_DIR$/feature/onboarding/onboarding_domain" />
+            <option value="$PROJECT_DIR$/feature/onboarding/onboarding_presentation" />
+            <option value="$PROJECT_DIR$/feature/tracker" />
+            <option value="$PROJECT_DIR$/feature/tracker/tracker_data" />
+            <option value="$PROJECT_DIR$/feature/tracker/tracker_domain" />
+            <option value="$PROJECT_DIR$/feature/tracker/tracker_presentation" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
