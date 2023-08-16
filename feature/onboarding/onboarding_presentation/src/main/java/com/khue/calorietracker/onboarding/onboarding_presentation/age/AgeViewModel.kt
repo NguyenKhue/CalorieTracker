@@ -6,10 +6,10 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.khue.calorietracker.core.preferences.domain.preferences.Preferences
-import com.khue.calorietracker.core.preferences.domain.use_case.FilterOutDigits
-import com.khue.calorietracker.core.preferences.navigation.Route
-import com.khue.calorietracker.core.preferences.util.UiEvent
-import com.khue.calorietracker.core.preferences.util.UiText
+import com.khue.calorietracker.core.ui.use_case.FilterOutDigits
+import com.khue.calorietracker.core.ui.navigation.Route
+import com.khue.calorietracker.core.ui.util.UiEvent
+import com.khue.calorietracker.core.ui.util.UiText
 import com.khue.calorietracker.core.ui.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel

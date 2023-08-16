@@ -1,4 +1,4 @@
-package com.khue.calorietracker.core.preferences.domain.use_case
+package com.khue.calorietracker.core.ui.use_case
 
 class FilterOutDigits {
     operator fun invoke(text: String): String {

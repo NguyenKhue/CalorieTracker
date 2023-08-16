@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.khue.calorietracker.core.preferences.domain.model.Gender
 import com.khue.calorietracker.core.preferences.domain.preferences.Preferences
-import com.khue.calorietracker.core.preferences.navigation.Route
-import com.khue.calorietracker.core.preferences.util.UiEvent
+import com.khue.calorietracker.core.ui.navigation.Route
+import com.khue.calorietracker.core.ui.util.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow

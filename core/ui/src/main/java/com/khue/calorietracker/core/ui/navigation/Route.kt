@@ -1,4 +1,4 @@
-package com.khue.calorietracker.core.preferences.navigation
+package com.khue.calorietracker.core.ui.navigation
 
 object Route {
     const val WELCOME = "welcome"

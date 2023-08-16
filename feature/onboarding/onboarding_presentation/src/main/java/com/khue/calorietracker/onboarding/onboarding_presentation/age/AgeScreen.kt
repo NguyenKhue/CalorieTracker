@@ -18,7 +18,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.khue.calorietracker.core.designsystem.ui.theme.LocalSpacing
-import com.khue.calorietracker.core.preferences.util.UiEvent
+import com.khue.calorietracker.core.ui.util.UiEvent
 import com.khue.calorietracker.core.ui.R
 import com.khue.calorietracker.onboarding.onboarding_presentation.components.ActionButton
 import com.khue.calorietracker.onboarding.onboarding_presentation.components.UnitTextField

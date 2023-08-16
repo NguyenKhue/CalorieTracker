@@ -21,8 +21,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.khue.calorietracker.core.designsystem.ui.theme.LocalSpacing
 import com.khue.calorietracker.core.preferences.domain.model.Gender
-import com.khue.calorietracker.core.preferences.util.UiEvent
 import com.khue.calorietracker.core.ui.R
+import com.khue.calorietracker.core.ui.util.UiEvent
 import com.khue.calorietracker.onboarding.onboarding_presentation.components.ActionButton
 import com.khue.calorietracker.onboarding.onboarding_presentation.components.SelectableButton
 
@@ -63,7 +63,7 @@ fun GenderScreen(
                 SelectableButton(
                     text = stringResource(id = R.string.male),
                     isSelected = viewModel.selectedGender is Gender.Male,
-                    color = MaterialTheme.colorScheme.primaryContainer,
+                    color = MaterialTheme.colorScheme.primary,
                     selectedTextColor = Color.White,
                     onClick = { viewModel.onGenderClick(Gender.Male) },
                     textStyle = MaterialTheme.typography.labelLarge.copy(
