@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavOptions
 import com.khue.calorietracker.core.designsystem.ui.theme.LocalSpacing
 import com.khue.calorietracker.core.preferences.domain.model.Gender
 import com.khue.calorietracker.core.ui.R
@@ -26,25 +27,42 @@ import com.khue.calorietracker.core.ui.util.UiEvent
 import com.khue.calorietracker.onboarding.onboarding_presentation.components.ActionButton
 import com.khue.calorietracker.onboarding.onboarding_presentation.components.SelectableButton
 
+
 @Composable
-fun GenderScreen(
-    onNavigate: (UiEvent.Navigate) -> Unit,
-    viewModel: GenderViewModel = hiltViewModel()
+internal fun GenderRoute(
+    onNavigateToAgeScreen: (NavOptions?) -> Unit,
+    modifier: Modifier = Modifier,
+    viewModel: GenderViewModel = hiltViewModel(),
 ) {
-
-    val spacing = LocalSpacing.current
-
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
-            when(event) {
-                is UiEvent.Navigate -> onNavigate(event)
+            when (event) {
+                is UiEvent.Navigate -> onNavigateToAgeScreen(null)
                 else -> Unit
             }
         }
     }
 
+    GenderScreen(
+        modifier = modifier,
+        selectedGender = viewModel.selectedGender,
+        onGenderClick = viewModel::onGenderClick,
+        onNextClick = viewModel::onNextClick,
+    )
+}
+
+@Composable
+fun GenderScreen(
+    modifier: Modifier = Modifier,
+    selectedGender: Gender,
+    onGenderClick: (Gender) -> Unit,
+    onNextClick: () -> Unit,
+) {
+
+    val spacing = LocalSpacing.current
+
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(spacing.spaceLarge)
     ) {
@@ -59,13 +77,13 @@ fun GenderScreen(
                 style = MaterialTheme.typography.headlineLarge
             )
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
-            Row{
+            Row {
                 SelectableButton(
                     text = stringResource(id = R.string.male),
-                    isSelected = viewModel.selectedGender is Gender.Male,
+                    isSelected = selectedGender is Gender.Male,
                     color = MaterialTheme.colorScheme.primary,
                     selectedTextColor = Color.White,
-                    onClick = { viewModel.onGenderClick(Gender.Male) },
+                    onClick = { onGenderClick(Gender.Male) },
                     textStyle = MaterialTheme.typography.labelLarge.copy(
                         fontWeight = FontWeight.Normal
                     )
@@ -75,10 +93,10 @@ fun GenderScreen(
 
                 SelectableButton(
                     text = stringResource(id = R.string.female),
-                    isSelected = viewModel.selectedGender is Gender.Female,
+                    isSelected = selectedGender is Gender.Female,
                     color = MaterialTheme.colorScheme.primary,
                     selectedTextColor = Color.White,
-                    onClick = { viewModel.onGenderClick(Gender.Female) },
+                    onClick = { onGenderClick(Gender.Female) },
                     textStyle = MaterialTheme.typography.labelLarge.copy(
                         fontWeight = FontWeight.Normal
                     )
@@ -87,7 +105,7 @@ fun GenderScreen(
         }
         ActionButton(
             text = stringResource(id = R.string.next),
-            onClick = viewModel::onNextClick,
+            onClick = onNextClick,
             modifier = Modifier.align(Alignment.BottomEnd)
         )
     }

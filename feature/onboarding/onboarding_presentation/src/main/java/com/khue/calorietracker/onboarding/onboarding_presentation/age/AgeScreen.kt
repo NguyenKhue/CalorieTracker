@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -17,36 +16,55 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavOptions
 import com.khue.calorietracker.core.designsystem.ui.theme.LocalSpacing
-import com.khue.calorietracker.core.ui.util.UiEvent
 import com.khue.calorietracker.core.ui.R
+import com.khue.calorietracker.core.ui.util.UiEvent
 import com.khue.calorietracker.onboarding.onboarding_presentation.components.ActionButton
 import com.khue.calorietracker.onboarding.onboarding_presentation.components.UnitTextField
 
 @Composable
-fun AgeScreen(
-    onNavigate: (UiEvent.Navigate) -> Unit,
+internal fun AgeRoute(
+    onNavigateToHeightScreen: (NavOptions?) -> Unit,
+    onShowSnackbar: suspend (String, String?) -> Boolean,
+    modifier: Modifier = Modifier,
     viewModel: AgeViewModel = hiltViewModel(),
-    snackbarHostState: SnackbarHostState
 ) {
 
-    val spacing = LocalSpacing.current
     val context = LocalContext.current
 
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when(event) {
-                is UiEvent.Navigate -> onNavigate(event)
+                is UiEvent.Navigate -> onNavigateToHeightScreen(null)
                 is UiEvent.ShowSnackbar -> {
-                    snackbarHostState.showSnackbar(message = event.message.asString(context))
+                    onShowSnackbar(event.message.asString(context), null)
                 }
                 else -> Unit
             }
         }
     }
 
+    AgeScreen(
+        onNextClick = viewModel::onNextClick,
+        age = viewModel.age,
+        onAgeEnter = viewModel::onAgeEnter,
+        modifier = modifier
+    )
+}
+
+@Composable
+fun AgeScreen(
+    onNextClick: () -> Unit,
+    age: String,
+    onAgeEnter: (String) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+
+    val spacing = LocalSpacing.current
+
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(spacing.spaceLarge)
     ) {
@@ -62,14 +80,14 @@ fun AgeScreen(
             )
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
             UnitTextField(
-                value = viewModel.age, 
-                onValueChange = viewModel::onAgeEnter, 
+                value = age,
+                onValueChange = onAgeEnter,
                 unit = stringResource(id = R.string.years)
             )
         }
         ActionButton(
             text = stringResource(id = R.string.next),
-            onClick = viewModel::onNextClick,
+            onClick = onNextClick,
             modifier = Modifier.align(Alignment.BottomEnd)
         )
     }

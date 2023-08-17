@@ -13,20 +13,33 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.navigation.NavOptions
 import com.khue.calorietracker.core.designsystem.ui.theme.LocalSpacing
-import com.khue.calorietracker.core.ui.navigation.Route
-import com.khue.calorietracker.core.ui.util.UiEvent
 import com.khue.calorietracker.core.ui.DevicePreviews
 import com.khue.calorietracker.core.ui.R
 import com.khue.calorietracker.onboarding.onboarding_presentation.components.ActionButton
 
+
+@Composable
+internal fun WelcomeRoute(
+    onNavigateToGenderScreen: (NavOptions?) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+
+    WelcomeScreen(
+        onNavigateToGenderScreen = onNavigateToGenderScreen,
+        modifier = modifier
+    )
+}
+
 @Composable
 fun WelcomeScreen(
-    onNavigate: (UiEvent.Navigate) -> Unit
+    onNavigateToGenderScreen: (NavOptions?) -> Unit,
+    modifier: Modifier
 ) {
     val spacing = LocalSpacing.current
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(spacing.spaceMedium),
         verticalArrangement = Arrangement.Center,
@@ -40,7 +53,7 @@ fun WelcomeScreen(
         Spacer(modifier = Modifier.height(spacing.spaceMedium))
         ActionButton(
             text = stringResource(id = R.string.next),
-            onClick = { onNavigate(UiEvent.Navigate(Route.GENDER)) },
+            onClick = { onNavigateToGenderScreen(null) },
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
     }
@@ -49,5 +62,5 @@ fun WelcomeScreen(
 @DevicePreviews
 @Composable
 fun WelcomeScreenPrev() {
-    WelcomeScreen() {}
+    WelcomeScreen({}, Modifier)
 }
