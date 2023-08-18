@@ -13,9 +13,9 @@ fun NavController.navigateToGoal(navOptions: NavOptions? = null) {
 }
 
 fun NavGraphBuilder.goalScreen(
-    onNavigateToAgeScreen: (NavOptions?) -> Unit,
+    onNavigateToNutrientGoalScreen: (NavOptions?) -> Unit,
 ) {
     composable(route = goalRoute) {
-        GoalRoute(onNavigateToAgeScreen = onNavigateToAgeScreen)
+        GoalRoute(onNavigateToAgeScreen = onNavigateToNutrientGoalScreen)
     }
 }

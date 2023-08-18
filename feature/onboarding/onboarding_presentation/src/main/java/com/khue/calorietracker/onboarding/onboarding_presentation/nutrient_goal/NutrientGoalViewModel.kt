@@ -4,18 +4,23 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.khue.calorietracker.core.common.util.UiEvent
 import com.khue.calorietracker.core.domain.use_case.FilterOutDigits
+import com.khue.calorietracker.core.domain.use_case.ValidateNutrients
 import com.khue.calorietracker.core.preferences.domain.preferences.Preferences
+import com.khue.calorietracker.core.ui.navigation.Route
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class NutrientGoalViewModel @Inject constructor(
     private val preferences: Preferences,
-    private val filerOutDigits: FilterOutDigits
+    private val filerOutDigits: FilterOutDigits,
+    private val validateNutrients: ValidateNutrients,
 ) : ViewModel() {
 
     var state by mutableStateOf(NutrientGoalState())
@@ -45,10 +50,29 @@ class NutrientGoalViewModel @Inject constructor(
         state = state.copy(fatRatio = filerOutDigits(fatRatio))
     }
 
-    fun onNextClick() {
-        preferences.saveCarbRatio(state.carbsRatio.toFloat())
-        preferences.saveProteinRatio(state.proteinRatio.toFloat())
-        preferences.saveFatRatio(state.fatRatio.toFloat())
+    private fun onNextClick() {
+        val nutrientsResult = validateNutrients(
+            state.carbsRatio,
+            state.proteinRatio,
+            state.fatRatio,
+        )
+
+        when (nutrientsResult) {
+            is ValidateNutrients.ValidateNutrientsResult.Success -> {
+                preferences.saveCarbRatio(nutrientsResult.carbsRatio)
+                preferences.saveProteinRatio(nutrientsResult.proteinRatio)
+                preferences.saveFatRatio(nutrientsResult.fatRatio)
+
+                viewModelScope.launch {
+                    _uiEvent.send(UiEvent.Navigate(Route.TRACKER_OVERVIEW))
+                }
+            }
+            is ValidateNutrients.ValidateNutrientsResult.Error -> {
+                viewModelScope.launch {
+                    _uiEvent.send(UiEvent.ShowSnackbar(nutrientsResult.message))
+                }
+            }
+        }
     }
 
 }

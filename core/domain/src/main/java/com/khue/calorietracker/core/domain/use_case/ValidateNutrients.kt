@@ -27,17 +27,17 @@ class ValidateNutrients {
         }
 
         return ValidateNutrientsResult.Success(
-            carbsRatio = carbsRatio,
-            proteinRatio = proteinRatio,
-            fatRatio = fatRatio,
+            carbsRatio = carbsRatio / 100f,
+            proteinRatio = proteinRatio / 100f,
+            fatRatio = fatRatio / 100f,
         )
     }
 
     sealed class ValidateNutrientsResult {
         data class Success(
-            val carbsRatio: Int,
-            val proteinRatio: Int,
-            val fatRatio: Int,
+            val carbsRatio: Float,
+            val proteinRatio: Float,
+            val fatRatio: Float,
         ) : ValidateNutrientsResult()
 
         data class Error(val message: UiText): ValidateNutrientsResult()

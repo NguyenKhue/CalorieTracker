@@ -29,6 +29,8 @@ import com.khue.calorietracker.onboarding.onboarding_presentation.goal.navigatio
 import com.khue.calorietracker.onboarding.onboarding_presentation.goal.navigation.navigateToGoal
 import com.khue.calorietracker.onboarding.onboarding_presentation.height.navigation.heightScreen
 import com.khue.calorietracker.onboarding.onboarding_presentation.height.navigation.navigateToHeight
+import com.khue.calorietracker.onboarding.onboarding_presentation.nutrient_goal.navigation.navigateToNutrientGoal
+import com.khue.calorietracker.onboarding.onboarding_presentation.nutrient_goal.navigation.nutrientGoalScreen
 import com.khue.calorietracker.onboarding.onboarding_presentation.weight.navigation.navigateToWeight
 import com.khue.calorietracker.onboarding.onboarding_presentation.weight.navigation.weightScreen
 import com.khue.calorietracker.onboarding.onboarding_presentation.welcome.navigation.welcomeRoute
@@ -89,10 +91,14 @@ class MainActivity : ComponentActivity() {
 
                             activityLevelScreen(onNavigateToGoalScreen = navController::navigateToGoal)
 
-                            goalScreen(onNavigateToAgeScreen = navController::navigateToAge)
+                            goalScreen(onNavigateToNutrientGoalScreen = navController::navigateToNutrientGoal)
 
-                            composable(Route.NUTRIENT_GOAL) {
-
+                            nutrientGoalScreen(onNavigateToTrackerOverviewScreen = {_ ->}) { message, action ->
+                                snackbarHostState.showSnackbar(
+                                    message = message,
+                                    actionLabel = action,
+                                    duration = SnackbarDuration.Short,
+                                ) == SnackbarResult.ActionPerformed
                             }
 
                             composable(Route.TRACKER_OVERVIEW) {
