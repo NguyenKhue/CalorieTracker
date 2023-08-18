@@ -42,6 +42,8 @@ class AndroidFeatureComposeConventionPlugin : Plugin<Project> {
             dependencies {
                 add("implementation", project(":core:preferences"))
                 add("implementation", project(":core:ui"))
+                add("implementation", project(":core:domain"))
+                add("implementation", project(":core:common"))
                 add("implementation", project(":core:designsystem"))
 
                 add("testImplementation", kotlin("test"))

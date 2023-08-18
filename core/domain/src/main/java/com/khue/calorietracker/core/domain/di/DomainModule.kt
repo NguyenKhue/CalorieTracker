@@ -1,6 +1,6 @@
-package com.khue.calorietracker.core.ui.di
+package com.khue.calorietracker.core.domain.di
 
-import com.khue.calorietracker.core.ui.use_case.FilterOutDigits
+import com.khue.calorietracker.core.domain.use_case.FilterOutDigits
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -9,7 +9,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object UiModule {
+object DomainModule {
     @Provides
     @Singleton
     fun provideFilterOutDigitsUseCase(): FilterOutDigits {

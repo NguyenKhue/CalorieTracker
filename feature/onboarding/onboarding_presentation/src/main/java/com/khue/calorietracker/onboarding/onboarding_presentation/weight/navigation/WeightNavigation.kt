@@ -13,10 +13,10 @@ fun NavController.navigateToWeight(navOptions: NavOptions? = null) {
 }
 
 fun NavGraphBuilder.weightScreen(
-    onNavigateToWeightScreen: (NavOptions?) -> Unit,
+    onNavigateToActivityLevelScreen: (NavOptions?) -> Unit,
     onShowSnackbar: suspend (String, String?) -> Boolean,
 ) {
     composable(route = weightRoute) {
-        WeightRoute(onNavigateToWeightScreen = onNavigateToWeightScreen, onShowSnackbar = onShowSnackbar)
+        WeightRoute(onNavigateToWeightScreen = onNavigateToActivityLevelScreen, onShowSnackbar = onShowSnackbar)
     }
 }

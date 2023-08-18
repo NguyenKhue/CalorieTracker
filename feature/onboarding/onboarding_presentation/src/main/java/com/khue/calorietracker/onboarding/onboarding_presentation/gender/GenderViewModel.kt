@@ -5,9 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.khue.calorietracker.core.common.util.UiEvent
 import com.khue.calorietracker.core.preferences.domain.model.Gender
 import com.khue.calorietracker.core.preferences.domain.preferences.Preferences
-import com.khue.calorietracker.core.ui.util.UiEvent
 import com.khue.calorietracker.onboarding.onboarding_presentation.age.navigation.ageRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel

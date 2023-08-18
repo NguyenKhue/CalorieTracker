@@ -5,10 +5,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.khue.calorietracker.core.common.util.UiEvent
+import com.khue.calorietracker.core.common.util.UiText
 import com.khue.calorietracker.core.preferences.domain.preferences.Preferences
-import com.khue.calorietracker.core.ui.R
-import com.khue.calorietracker.core.ui.util.UiEvent
-import com.khue.calorietracker.core.ui.util.UiText
+import com.khue.calorietracker.core.common.R
+import com.khue.calorietracker.onboarding.onboarding_presentation.activity.navigation.activityLevelRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -38,7 +39,7 @@ class WeightViewModel @Inject constructor(
                 return@launch
             }
             preferences.saveWeight(weightNumber)
-            _uiEvent.send(UiEvent.Navigate(""))
+            _uiEvent.send(UiEvent.Navigate(activityLevelRoute))
         }
     }
 }

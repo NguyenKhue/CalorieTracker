@@ -19,10 +19,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.khue.calorietracker.core.designsystem.ui.theme.CalorieTrackerTheme
 import com.khue.calorietracker.core.ui.navigation.Route
+import com.khue.calorietracker.onboarding.onboarding_presentation.activity.navigation.activityLevelScreen
+import com.khue.calorietracker.onboarding.onboarding_presentation.activity.navigation.navigateToActivityLevel
 import com.khue.calorietracker.onboarding.onboarding_presentation.age.navigation.ageScreen
 import com.khue.calorietracker.onboarding.onboarding_presentation.age.navigation.navigateToAge
 import com.khue.calorietracker.onboarding.onboarding_presentation.gender.navigation.genderScreen
 import com.khue.calorietracker.onboarding.onboarding_presentation.gender.navigation.navigateToGender
+import com.khue.calorietracker.onboarding.onboarding_presentation.goal.navigation.goalScreen
+import com.khue.calorietracker.onboarding.onboarding_presentation.goal.navigation.navigateToGoal
 import com.khue.calorietracker.onboarding.onboarding_presentation.height.navigation.heightScreen
 import com.khue.calorietracker.onboarding.onboarding_presentation.height.navigation.navigateToHeight
 import com.khue.calorietracker.onboarding.onboarding_presentation.weight.navigation.navigateToWeight
@@ -57,6 +61,8 @@ class MainActivity : ComponentActivity() {
                         ) {
                             welcomeScreen(onNavigateToGenderScreen = navController::navigateToGender)
 
+                            genderScreen(onNavigateToAgeScreen = navController::navigateToAge)
+
                             ageScreen(onNavigateToHeightScreen = navController::navigateToHeight) { message, action ->
                                 snackbarHostState.showSnackbar(
                                     message = message,
@@ -64,8 +70,6 @@ class MainActivity : ComponentActivity() {
                                     duration = SnackbarDuration.Short,
                                 ) == SnackbarResult.ActionPerformed
                             }
-
-                            genderScreen(onNavigateToAgeScreen = navController::navigateToAge)
 
                             heightScreen(onNavigateToWeightScreen = navController::navigateToWeight) { message, action ->
                                 snackbarHostState.showSnackbar(
@@ -75,7 +79,7 @@ class MainActivity : ComponentActivity() {
                                 ) == SnackbarResult.ActionPerformed
                             }
 
-                            weightScreen(onNavigateToWeightScreen = {_->}) { message, action ->
+                            weightScreen(onNavigateToActivityLevelScreen = navController::navigateToActivityLevel) { message, action ->
                                 snackbarHostState.showSnackbar(
                                     message = message,
                                     actionLabel = action,
@@ -83,15 +87,14 @@ class MainActivity : ComponentActivity() {
                                 ) == SnackbarResult.ActionPerformed
                             }
 
+                            activityLevelScreen(onNavigateToGoalScreen = navController::navigateToGoal)
+
+                            goalScreen(onNavigateToAgeScreen = navController::navigateToAge)
+
                             composable(Route.NUTRIENT_GOAL) {
 
                             }
-                            composable(Route.ACTIVITY) {
 
-                            }
-                            composable(Route.GOAL) {
-
-                            }
                             composable(Route.TRACKER_OVERVIEW) {
 
                             }

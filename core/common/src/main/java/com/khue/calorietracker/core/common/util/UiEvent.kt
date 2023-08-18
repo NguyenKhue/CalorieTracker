@@ -1,4 +1,4 @@
-package com.khue.calorietracker.core.ui.util
+package com.khue.calorietracker.core.common.util
 
 sealed class UiEvent {
     data class Navigate(val route: String) : UiEvent()

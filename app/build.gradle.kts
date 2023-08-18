@@ -54,6 +54,7 @@ dependencies {
 
     implementation(project(":core:ui"))
     implementation(project(":core:preferences"))
+    implementation(project(":core:common"))
     implementation(project(":core:designsystem"))
     implementation(project(":feature:onboarding:onboarding_domain"))
     implementation(project(":feature:onboarding:onboarding_presentation"))

@@ -16,7 +16,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavOptions
 import com.khue.calorietracker.core.designsystem.ui.theme.LocalSpacing
 import com.khue.calorietracker.core.ui.DevicePreviews
-import com.khue.calorietracker.core.ui.R
+import com.khue.calorietracker.core.common.R
 import com.khue.calorietracker.onboarding.onboarding_presentation.components.ActionButton
 
 

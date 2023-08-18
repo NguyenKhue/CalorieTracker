@@ -7,3 +7,7 @@ plugins {
 android {
     namespace = "com.khue.calorietracker.core.domain"
 }
+
+dependencies {
+    implementation(project(":core:common"))
+}
