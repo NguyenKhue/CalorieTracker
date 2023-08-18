@@ -23,6 +23,10 @@ import com.khue.calorietracker.onboarding.onboarding_presentation.age.navigation
 import com.khue.calorietracker.onboarding.onboarding_presentation.age.navigation.navigateToAge
 import com.khue.calorietracker.onboarding.onboarding_presentation.gender.navigation.genderScreen
 import com.khue.calorietracker.onboarding.onboarding_presentation.gender.navigation.navigateToGender
+import com.khue.calorietracker.onboarding.onboarding_presentation.height.navigation.heightScreen
+import com.khue.calorietracker.onboarding.onboarding_presentation.height.navigation.navigateToHeight
+import com.khue.calorietracker.onboarding.onboarding_presentation.weight.navigation.navigateToWeight
+import com.khue.calorietracker.onboarding.onboarding_presentation.weight.navigation.weightScreen
 import com.khue.calorietracker.onboarding.onboarding_presentation.welcome.navigation.welcomeRoute
 import com.khue.calorietracker.onboarding.onboarding_presentation.welcome.navigation.welcomeScreen
 import dagger.hilt.android.AndroidEntryPoint
@@ -53,7 +57,7 @@ class MainActivity : ComponentActivity() {
                         ) {
                             welcomeScreen(onNavigateToGenderScreen = navController::navigateToGender)
 
-                            ageScreen(onNavigateToHeightScreen = { _ ->}) { message, action ->
+                            ageScreen(onNavigateToHeightScreen = navController::navigateToHeight) { message, action ->
                                 snackbarHostState.showSnackbar(
                                     message = message,
                                     actionLabel = action,
@@ -63,12 +67,22 @@ class MainActivity : ComponentActivity() {
 
                             genderScreen(onNavigateToAgeScreen = navController::navigateToAge)
 
-                            composable(Route.HEIGHT) {
-
+                            heightScreen(onNavigateToWeightScreen = navController::navigateToWeight) { message, action ->
+                                snackbarHostState.showSnackbar(
+                                    message = message,
+                                    actionLabel = action,
+                                    duration = SnackbarDuration.Short,
+                                ) == SnackbarResult.ActionPerformed
                             }
-                            composable(Route.WEIGHT) {
 
+                            weightScreen(onNavigateToWeightScreen = {_->}) { message, action ->
+                                snackbarHostState.showSnackbar(
+                                    message = message,
+                                    actionLabel = action,
+                                    duration = SnackbarDuration.Short,
+                                ) == SnackbarResult.ActionPerformed
                             }
+
                             composable(Route.NUTRIENT_GOAL) {
 
                             }
