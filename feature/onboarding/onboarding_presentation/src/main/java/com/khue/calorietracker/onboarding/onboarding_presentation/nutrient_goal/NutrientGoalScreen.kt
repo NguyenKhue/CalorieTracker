@@ -1,5 +1,6 @@
 package com.khue.calorietracker.onboarding.onboarding_presentation.nutrient_goal
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,6 +20,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
@@ -29,6 +31,7 @@ import androidx.navigation.NavOptions
 import com.khue.calorietracker.core.common.R
 import com.khue.calorietracker.core.common.util.UiEvent
 import com.khue.calorietracker.core.designsystem.ui.theme.LocalSpacing
+import com.khue.calorietracker.core.ui.DevicePreviews
 import com.khue.calorietracker.onboarding.onboarding_presentation.components.ActionButton
 import com.khue.calorietracker.onboarding.onboarding_presentation.components.UnitTextField
 
@@ -91,43 +94,48 @@ fun NutrientGoalScreen(
                 style = MaterialTheme.typography.headlineLarge
             )
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
-            UnitTextField(
-                initValue = "40",
-                onValueChange = { onEvent(NutrientGoalEvent.OnCarbsRatioEnter(it)) },
-                unit = stringResource(id = R.string.percent_carbs),
-                keyboardActions = KeyboardActions(
-                    onNext = { focusManager.moveFocus(FocusDirection.Down) }
-                ),
-                keyboardOptions = KeyboardOptions.Default.copy(
-                    imeAction = ImeAction.Next,
-                    keyboardType = KeyboardType.Number
-                ),
-                focusRequester = carbsFocus
-            )
-            Spacer(modifier = Modifier.height(spacing.spaceMedium))
-            UnitTextField(
-                initValue = "30",
-                onValueChange = { onEvent(NutrientGoalEvent.OnProteinRatioEnter(it)) },
-                unit = stringResource(id = R.string.percent_proteins),
-                keyboardActions = KeyboardActions(
-                    onNext = { focusManager.moveFocus(FocusDirection.Down) }
-                ),
-                keyboardOptions = KeyboardOptions.Default.copy(
-                    imeAction = ImeAction.Next,
-                    keyboardType = KeyboardType.Number
-                ),
-                focusRequester = proteinsFocus
-            )
-            Spacer(modifier = Modifier.height(spacing.spaceMedium))
-            UnitTextField(
-                initValue = "30",
-                onValueChange = { onEvent(NutrientGoalEvent.OnFatRatioEnter(it)) },
-                unit = stringResource(id = R.string.percent_fats),
-                keyboardActions = KeyboardActions(
-                    onDone = { focusManager.clearFocus() }
-                ),
-                focusRequester = fatsFocus
-            )
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.Start
+            ) {
+                UnitTextField(
+                    initValue = "40",
+                    onValueChange = { onEvent(NutrientGoalEvent.OnCarbsRatioEnter(it)) },
+                    unit = stringResource(id = R.string.percent_carbs),
+                    keyboardActions = KeyboardActions(
+                        onNext = { focusManager.moveFocus(FocusDirection.Down) }
+                    ),
+                    keyboardOptions = KeyboardOptions.Default.copy(
+                        imeAction = ImeAction.Next,
+                        keyboardType = KeyboardType.Number
+                    ),
+                    focusRequester = carbsFocus
+                )
+                Spacer(modifier = Modifier.height(spacing.spaceMedium))
+                UnitTextField(
+                    initValue = "30",
+                    onValueChange = { onEvent(NutrientGoalEvent.OnProteinRatioEnter(it)) },
+                    unit = stringResource(id = R.string.percent_proteins),
+                    keyboardActions = KeyboardActions(
+                        onNext = { focusManager.moveFocus(FocusDirection.Down) }
+                    ),
+                    keyboardOptions = KeyboardOptions.Default.copy(
+                        imeAction = ImeAction.Next,
+                        keyboardType = KeyboardType.Number
+                    ),
+                    focusRequester = proteinsFocus
+                )
+                Spacer(modifier = Modifier.height(spacing.spaceMedium))
+                UnitTextField(
+                    initValue = "30",
+                    onValueChange = { onEvent(NutrientGoalEvent.OnFatRatioEnter(it)) },
+                    unit = stringResource(id = R.string.percent_fats),
+                    keyboardActions = KeyboardActions(
+                        onDone = { focusManager.clearFocus() }
+                    ),
+                    focusRequester = fatsFocus
+                )
+            }
         }
         ActionButton(
             text = stringResource(id = R.string.next),
@@ -135,5 +143,11 @@ fun NutrientGoalScreen(
             modifier = Modifier.align(Alignment.BottomEnd)
         )
     }
+}
+
+@DevicePreviews
+@Composable
+fun NutrientGoalScreenPrev() {
+    NutrientGoalScreen(modifier = Modifier.background(Color.White))
 }
 

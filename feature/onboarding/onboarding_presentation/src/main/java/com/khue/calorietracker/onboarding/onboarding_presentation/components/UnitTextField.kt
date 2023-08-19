@@ -4,7 +4,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -37,7 +39,7 @@ fun UnitTextField(
     unit: String,
     textStyle: TextStyle = TextStyle(
         fontSize = 70.sp,
-        color = MaterialTheme.colorScheme.primary
+        color = MaterialTheme.colorScheme.primary,
     ),
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default.copy(
@@ -57,7 +59,7 @@ fun UnitTextField(
     }
 
     Row(
-        modifier = modifier,
+        modifier = modifier.wrapContentWidth(),
         horizontalArrangement = Arrangement.Center,
     ) {
         BasicTextField(
@@ -70,9 +72,13 @@ fun UnitTextField(
             cursorBrush = SolidColor(MaterialTheme.colorScheme.primary),
             keyboardActions = keyboardActions,
             keyboardOptions = keyboardOptions,
+            singleLine = true,
+            maxLines = 1,
             modifier = Modifier
                 .focusRequester(focusRequester)
+                .defaultMinSize(48.dp)
                 .width(IntrinsicSize.Max)
+                .weight(1f, fill = false)
                 .alignBy(LastBaseline)
         )
         Spacer(modifier = Modifier.width(16.dp))
