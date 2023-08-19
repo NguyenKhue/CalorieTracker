@@ -26,6 +26,7 @@ import com.khue.calorietracker.core.common.util.UiEvent
 import com.khue.calorietracker.core.designsystem.ui.theme.LocalSpacing
 import com.khue.calorietracker.onboarding.onboarding_presentation.components.ActionButton
 import com.khue.calorietracker.onboarding.onboarding_presentation.components.UnitTextField
+import com.khue.calorietracker.onboarding.onboarding_presentation.components.WeightTransformation
 
 @Composable
 internal fun WeightRoute(
@@ -90,6 +91,7 @@ fun WeightScreen(
             UnitTextField(
                 initValue = "60",
                 onValueChange = onWeightEnter,
+                transformation = { WeightTransformation().invoke(it)},
                 unit = stringResource(id = R.string.kg),
                 keyboardActions = KeyboardActions(
                     onDone = { focusManager.clearFocus() }

@@ -27,6 +27,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -36,6 +37,7 @@ fun UnitTextField(
     modifier: Modifier = Modifier,
     initValue: String,
     onValueChange: (String) -> Unit,
+    transformation: ((String) -> String)? = null,
     unit: String,
     textStyle: TextStyle = TextStyle(
         fontSize = 70.sp,
@@ -46,6 +48,7 @@ fun UnitTextField(
         imeAction = ImeAction.Done,
         keyboardType = KeyboardType.Number
     ),
+    visualTransformation: VisualTransformation = VisualTransformation.None,
     focusRequester: FocusRequester = remember { FocusRequester() },
 ) {
 
@@ -65,13 +68,15 @@ fun UnitTextField(
         BasicTextField(
             value = textFieldValue,
             onValueChange = {
-                onValueChange(it.text)
-                textFieldValue = it
+                val transformedText = transformation?.invoke(it.text) ?: it.text
+                onValueChange(transformedText)
+                textFieldValue = it.copy(text = transformedText)
             },
             textStyle = textStyle,
             cursorBrush = SolidColor(MaterialTheme.colorScheme.primary),
             keyboardActions = keyboardActions,
             keyboardOptions = keyboardOptions,
+            visualTransformation = visualTransformation,
             singleLine = true,
             maxLines = 1,
             modifier = Modifier
