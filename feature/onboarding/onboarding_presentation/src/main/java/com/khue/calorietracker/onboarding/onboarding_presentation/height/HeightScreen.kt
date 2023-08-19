@@ -7,19 +7,23 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavOptions
+import com.khue.calorietracker.core.common.R
 import com.khue.calorietracker.core.common.util.UiEvent
 import com.khue.calorietracker.core.designsystem.ui.theme.LocalSpacing
-import com.khue.calorietracker.core.common.R
 import com.khue.calorietracker.onboarding.onboarding_presentation.components.ActionButton
 import com.khue.calorietracker.onboarding.onboarding_presentation.components.UnitTextField
 
@@ -35,11 +39,12 @@ internal fun HeightRoute(
 
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
-            when(event) {
+            when (event) {
                 is UiEvent.Navigate -> onNavigateToWeightScreen(null)
                 is UiEvent.ShowSnackbar -> {
                     onShowSnackbar(event.message.asString(context), null)
                 }
+
                 else -> Unit
             }
         }
@@ -47,7 +52,6 @@ internal fun HeightRoute(
 
     HeightScreen(
         onNextClick = viewModel::onNextClick,
-        height = viewModel.height,
         onHeightEnter = viewModel::onHeightEnter,
         modifier = modifier
     )
@@ -56,12 +60,17 @@ internal fun HeightRoute(
 @Composable
 fun HeightScreen(
     onNextClick: () -> Unit,
-    height: String,
     onHeightEnter: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
 
     val spacing = LocalSpacing.current
+    val focusManager = LocalFocusManager.current
+    val focusRequester = remember { FocusRequester() }
+
+    LaunchedEffect(key1 = true) {
+        focusRequester.requestFocus()
+    }
 
     Box(
         modifier = modifier
@@ -80,9 +89,13 @@ fun HeightScreen(
             )
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
             UnitTextField(
-                value = height,
+                initValue = "171",
                 onValueChange = onHeightEnter,
-                unit = stringResource(id = R.string.cm)
+                unit = stringResource(id = R.string.cm),
+                keyboardActions = KeyboardActions(
+                    onDone = { focusManager.clearFocus() }
+                ),
+                focusRequester = focusRequester
             )
         }
         ActionButton(

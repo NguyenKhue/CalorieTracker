@@ -7,19 +7,23 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavOptions
+import com.khue.calorietracker.core.common.R
 import com.khue.calorietracker.core.common.util.UiEvent
 import com.khue.calorietracker.core.designsystem.ui.theme.LocalSpacing
-import com.khue.calorietracker.core.common.R
 import com.khue.calorietracker.onboarding.onboarding_presentation.components.ActionButton
 import com.khue.calorietracker.onboarding.onboarding_presentation.components.UnitTextField
 
@@ -47,7 +51,6 @@ internal fun AgeRoute(
 
     AgeScreen(
         onNextClick = viewModel::onNextClick,
-        age = viewModel.age,
         onAgeEnter = viewModel::onAgeEnter,
         modifier = modifier
     )
@@ -56,12 +59,17 @@ internal fun AgeRoute(
 @Composable
 fun AgeScreen(
     onNextClick: () -> Unit,
-    age: String,
     onAgeEnter: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
 
     val spacing = LocalSpacing.current
+    val focusManager = LocalFocusManager.current
+    val focusRequester = remember { FocusRequester() }
+
+    LaunchedEffect(key1 = true) {
+        focusRequester.requestFocus()
+    }
 
     Box(
         modifier = modifier
@@ -80,9 +88,13 @@ fun AgeScreen(
             )
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
             UnitTextField(
-                value = age,
+                initValue = "22",
                 onValueChange = onAgeEnter,
-                unit = stringResource(id = R.string.years)
+                unit = stringResource(id = R.string.years),
+                keyboardActions = KeyboardActions(
+                    onDone = { focusManager.clearFocus() }
+                ),
+                focusRequester = focusRequester
             )
         }
         ActionButton(
