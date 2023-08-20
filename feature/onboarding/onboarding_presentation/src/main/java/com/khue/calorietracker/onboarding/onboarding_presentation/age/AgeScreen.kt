@@ -52,6 +52,7 @@ internal fun AgeRoute(
     AgeScreen(
         onNextClick = viewModel::onNextClick,
         onAgeEnter = viewModel::onAgeEnter,
+        ageFilter = viewModel::ageFilter,
         modifier = modifier
     )
 }
@@ -60,6 +61,7 @@ internal fun AgeRoute(
 fun AgeScreen(
     onNextClick: () -> Unit,
     onAgeEnter: (String) -> Unit,
+    ageFilter: (String) -> String,
     modifier: Modifier = Modifier,
 ) {
 
@@ -90,6 +92,7 @@ fun AgeScreen(
             UnitTextField(
                 initValue = "22",
                 onValueChange = onAgeEnter,
+                transformation = ageFilter,
                 unit = stringResource(id = R.string.years),
                 keyboardActions = KeyboardActions(
                     onDone = { focusManager.clearFocus() }

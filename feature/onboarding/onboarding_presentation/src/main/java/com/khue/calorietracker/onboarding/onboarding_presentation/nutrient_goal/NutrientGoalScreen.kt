@@ -60,7 +60,8 @@ internal fun NutrientGoalRoute(
 
     NutrientGoalScreen(
         modifier = modifier,
-        onEvent = viewModel::onEvent
+        onEvent = viewModel::onEvent,
+        nutrientTransform = viewModel::nutrientTransform
     )
 }
 
@@ -69,6 +70,7 @@ internal fun NutrientGoalRoute(
 fun NutrientGoalScreen(
     modifier: Modifier,
     onEvent: (NutrientGoalEvent) -> Unit = {},
+    nutrientTransform: (String) -> String,
 ) {
     val spacing = LocalSpacing.current
     val focusManager = LocalFocusManager.current
@@ -101,6 +103,7 @@ fun NutrientGoalScreen(
                 UnitTextField(
                     initValue = "40",
                     onValueChange = { onEvent(NutrientGoalEvent.OnCarbsRatioEnter(it)) },
+                    transformation = nutrientTransform,
                     unit = stringResource(id = R.string.percent_carbs),
                     keyboardActions = KeyboardActions(
                         onNext = { focusManager.moveFocus(FocusDirection.Down) }
@@ -115,6 +118,7 @@ fun NutrientGoalScreen(
                 UnitTextField(
                     initValue = "30",
                     onValueChange = { onEvent(NutrientGoalEvent.OnProteinRatioEnter(it)) },
+                    transformation = nutrientTransform,
                     unit = stringResource(id = R.string.percent_proteins),
                     keyboardActions = KeyboardActions(
                         onNext = { focusManager.moveFocus(FocusDirection.Down) }
@@ -129,6 +133,7 @@ fun NutrientGoalScreen(
                 UnitTextField(
                     initValue = "30",
                     onValueChange = { onEvent(NutrientGoalEvent.OnFatRatioEnter(it)) },
+                    transformation = nutrientTransform,
                     unit = stringResource(id = R.string.percent_fats),
                     keyboardActions = KeyboardActions(
                         onDone = { focusManager.clearFocus() }
@@ -148,6 +153,9 @@ fun NutrientGoalScreen(
 @DevicePreviews
 @Composable
 fun NutrientGoalScreenPrev() {
-    NutrientGoalScreen(modifier = Modifier.background(Color.White))
+    NutrientGoalScreen(
+        modifier = Modifier.background(Color.White),
+        nutrientTransform = { it }
+    )
 }
 

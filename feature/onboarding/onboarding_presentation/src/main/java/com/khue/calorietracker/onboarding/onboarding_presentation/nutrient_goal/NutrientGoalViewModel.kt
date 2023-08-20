@@ -39,15 +39,24 @@ class NutrientGoalViewModel @Inject constructor(
     }
 
     private fun onCarbsRatioEnter(carbsRatio: String) {
-        state = state.copy(carbsRatio = filerOutDigits(carbsRatio))
+        state = state.copy(carbsRatio = carbsRatio)
     }
 
     private fun onProteinRatioEnter(proteinRatio: String) {
-        state = state.copy(proteinRatio = filerOutDigits(proteinRatio))
+        state = state.copy(proteinRatio = proteinRatio)
     }
 
     private fun onFatRatioEnter(fatRatio: String) {
-        state = state.copy(fatRatio = filerOutDigits(fatRatio))
+        state = state.copy(fatRatio = fatRatio)
+    }
+
+    fun nutrientTransform(ratio: String): String {
+        val newRatio = if (ratio.length > 3) {
+            ratio.subSequence(0, 3).toString()
+        } else {
+            ratio
+        }
+        return filerOutDigits(newRatio)
     }
 
     private fun onNextClick() {

@@ -53,6 +53,7 @@ internal fun HeightRoute(
     HeightScreen(
         onNextClick = viewModel::onNextClick,
         onHeightEnter = viewModel::onHeightEnter,
+        filterHeight = viewModel::heightFilter,
         modifier = modifier
     )
 }
@@ -61,6 +62,7 @@ internal fun HeightRoute(
 fun HeightScreen(
     onNextClick: () -> Unit,
     onHeightEnter: (String) -> Unit,
+    filterHeight: (String) -> String,
     modifier: Modifier = Modifier,
 ) {
 
@@ -91,6 +93,7 @@ fun HeightScreen(
             UnitTextField(
                 initValue = "171",
                 onValueChange = onHeightEnter,
+                transformation = filterHeight,
                 unit = stringResource(id = R.string.cm),
                 keyboardActions = KeyboardActions(
                     onDone = { focusManager.clearFocus() }

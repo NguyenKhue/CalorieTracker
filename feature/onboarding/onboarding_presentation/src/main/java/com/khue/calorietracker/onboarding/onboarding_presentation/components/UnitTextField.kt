@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -62,7 +61,7 @@ fun UnitTextField(
     }
 
     Row(
-        modifier = modifier.wrapContentWidth(),
+        modifier = modifier,
         horizontalArrangement = Arrangement.Center,
     ) {
         BasicTextField(
@@ -77,13 +76,12 @@ fun UnitTextField(
             keyboardActions = keyboardActions,
             keyboardOptions = keyboardOptions,
             visualTransformation = visualTransformation,
-            singleLine = true,
             maxLines = 1,
             modifier = Modifier
                 .focusRequester(focusRequester)
-                .defaultMinSize(48.dp)
+                .defaultMinSize(minWidth = 8.dp)
+                .weight(1f, false)
                 .width(IntrinsicSize.Max)
-                .weight(1f, fill = false)
                 .alignBy(LastBaseline)
         )
         Spacer(modifier = Modifier.width(16.dp))
