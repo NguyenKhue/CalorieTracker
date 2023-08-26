@@ -1,7 +1,6 @@
 package com.khue.calorietracker.core.domain.di
 
 import com.khue.calorietracker.core.domain.use_case.FilterOutDigits
-import com.khue.calorietracker.core.domain.use_case.ValidateNutrients
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,11 +14,5 @@ object DomainModule {
     @ViewModelScoped
     fun provideFilterOutDigitsUseCase(): FilterOutDigits {
         return FilterOutDigits()
-    }
-
-    @Provides
-    @ViewModelScoped
-    fun provideValidateNutrientsUseCase(): ValidateNutrients {
-        return ValidateNutrients()
     }
 }

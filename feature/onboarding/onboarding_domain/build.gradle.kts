@@ -7,4 +7,6 @@ android {
     namespace = "com.khue.calorietracker.onboarding.onboarding_domain"
 }
 
-dependencies {}
+dependencies {
+    implementation(project(":core:common"))
+}

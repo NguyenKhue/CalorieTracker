@@ -3,11 +3,10 @@ package com.khue.calorietracker.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.khue.calorietracker.core.ui.navigation.Route
 import com.khue.calorietracker.onboarding.onboarding_presentation.navigation.ONBOARDING_GRAPH_ROUTE_PATTERN
 import com.khue.calorietracker.onboarding.onboarding_presentation.navigation.onboardingGraph
+import com.khue.calorietracker.tracker.tracker_presentation.navigation.trackerGraph
 
 @Composable
 fun CalorieTrackerNavHost(
@@ -25,11 +24,6 @@ fun CalorieTrackerNavHost(
 
         onboardingGraph(navController = navController, onShowSnackbar = onShowSnackbar)
 
-        composable(Route.TRACKER_OVERVIEW) {
-
-        }
-        composable(Route.SEARCH) {
-
-        }
+        trackerGraph(navController = navController, onShowSnackbar = onShowSnackbar)
     }
 }

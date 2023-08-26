@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.khue.calorietracker.core.common.util.UiEvent
 import com.khue.calorietracker.core.domain.use_case.FilterOutDigits
-import com.khue.calorietracker.core.domain.use_case.ValidateNutrients
+import com.khue.calorietracker.onboarding.onboarding_domain.use_cases.ValidateNutrients
 import com.khue.calorietracker.core.preferences.domain.preferences.Preferences
 import com.khue.calorietracker.core.ui.navigation.Route
 import dagger.hilt.android.lifecycle.HiltViewModel

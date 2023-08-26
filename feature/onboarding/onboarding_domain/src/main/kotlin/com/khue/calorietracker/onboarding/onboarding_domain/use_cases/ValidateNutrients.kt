@@ -1,4 +1,4 @@
-package com.khue.calorietracker.core.domain.use_case
+package com.khue.calorietracker.onboarding.onboarding_domain.use_cases
 
 import com.khue.calorietracker.core.common.R
 import com.khue.calorietracker.core.common.util.UiText
