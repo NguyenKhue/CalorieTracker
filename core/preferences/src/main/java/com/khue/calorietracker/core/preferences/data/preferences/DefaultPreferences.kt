@@ -79,7 +79,7 @@ class DefaultPreferences(
             gender = Gender.fromString(genderString ?: "female"),
             age = age,
             weight = weight,
-            high = high,
+            height = high,
             activityLevel = ActivityLevel.fromString(activityLevel ?: "medium"),
             goalType = GoalType.fromString(goalType ?: "keep_weight"),
             carbRatio = carbRatio,
