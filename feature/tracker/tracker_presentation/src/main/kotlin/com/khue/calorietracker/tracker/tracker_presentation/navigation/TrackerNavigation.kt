@@ -5,6 +5,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.khue.calorietracker.core.ui.navigation.Route
+import com.khue.calorietracker.tracker.tracker_presentation.tracker_overview.navigation.trackerOverviewRoute
+import com.khue.calorietracker.tracker.tracker_presentation.tracker_overview.navigation.trackerOverviewScreen
 
 private const val TRACKER_GRAPH_ROUTE_PATTERN = "tracker_graph"
 
@@ -14,12 +16,11 @@ fun NavGraphBuilder.trackerGraph(
 ) {
     navigation(
         route = TRACKER_GRAPH_ROUTE_PATTERN,
-        startDestination = Route.TRACKER_OVERVIEW,
+        startDestination = trackerOverviewRoute,
     ) {
 
-        composable(Route.TRACKER_OVERVIEW) {
+        trackerOverviewScreen()
 
-        }
         composable(Route.SEARCH) {
 
         }

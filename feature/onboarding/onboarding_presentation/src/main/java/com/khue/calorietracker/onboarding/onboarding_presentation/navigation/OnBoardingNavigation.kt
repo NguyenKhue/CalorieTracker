@@ -19,6 +19,7 @@ import com.khue.calorietracker.onboarding.onboarding_presentation.weight.navigat
 import com.khue.calorietracker.onboarding.onboarding_presentation.weight.navigation.weightScreen
 import com.khue.calorietracker.onboarding.onboarding_presentation.welcome.navigation.welcomeRoute
 import com.khue.calorietracker.onboarding.onboarding_presentation.welcome.navigation.welcomeScreen
+import com.khue.calorietracker.tracker.tracker_presentation.tracker_overview.navigation.navigateToTrackerOverview
 
 const val ONBOARDING_GRAPH_ROUTE_PATTERN = "onboarding_graph"
 
@@ -45,6 +46,6 @@ fun NavGraphBuilder.onboardingGraph(
 
         goalScreen(onNavigateToNutrientGoalScreen = navController::navigateToNutrientGoal)
 
-        nutrientGoalScreen(onNavigateToTrackerOverviewScreen = {_ ->}, onShowSnackbar = onShowSnackbar)
+        nutrientGoalScreen(onNavigateToTrackerOverviewScreen = navController::navigateToTrackerOverview, onShowSnackbar = onShowSnackbar)
     }
 }

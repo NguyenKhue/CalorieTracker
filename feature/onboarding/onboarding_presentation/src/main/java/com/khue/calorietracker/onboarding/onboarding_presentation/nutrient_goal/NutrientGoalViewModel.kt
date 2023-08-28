@@ -7,9 +7,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.khue.calorietracker.core.common.util.UiEvent
 import com.khue.calorietracker.core.domain.use_case.FilterOutDigits
-import com.khue.calorietracker.onboarding.onboarding_domain.use_cases.ValidateNutrients
 import com.khue.calorietracker.core.preferences.domain.preferences.Preferences
-import com.khue.calorietracker.core.ui.navigation.Route
+import com.khue.calorietracker.onboarding.onboarding_domain.use_cases.ValidateNutrients
+import com.khue.calorietracker.tracker.tracker_presentation.tracker_overview.navigation.trackerOverviewRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -73,7 +73,7 @@ class NutrientGoalViewModel @Inject constructor(
                 preferences.saveFatRatio(nutrientsResult.fatRatio)
 
                 viewModelScope.launch {
-                    _uiEvent.send(UiEvent.Navigate(Route.TRACKER_OVERVIEW))
+                    _uiEvent.send(UiEvent.Navigate(trackerOverviewRoute))
                 }
             }
             is ValidateNutrients.ValidateNutrientsResult.Error -> {

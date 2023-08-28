@@ -89,7 +89,7 @@ class TrackerOverviewViewModel @Inject constructor(
             .onEach { foods ->
                 val nutrientsResult = trackerUseCases.calculateMealNutrients(foods)
                 state = state.copy(
-                    totalCabs = nutrientsResult.totalCarbs,
+                    totalCarbs = nutrientsResult.totalCarbs,
                     totalFat = nutrientsResult.totalFat,
                     totalProtein = nutrientsResult.totalProtein,
                     totalCalories = nutrientsResult.totalCalories,
