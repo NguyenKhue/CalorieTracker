@@ -1,6 +1,9 @@
 package com.khue.calorietracker.tracker.tracker_presentation.tracker_overview
 
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
@@ -9,6 +12,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.khue.calorietracker.core.common.util.UiEvent
 import com.khue.calorietracker.core.designsystem.ui.theme.LocalSpacing
+import com.khue.calorietracker.tracker.tracker_presentation.tracker_overview.components.DaySelector
 import com.khue.calorietracker.tracker.tracker_presentation.tracker_overview.components.NutrientsHeader
 
 
@@ -42,6 +46,23 @@ fun TrackerOverviewScreen(
     ) {
         item {
             NutrientsHeader(state = state)
+
+            Spacer(modifier = Modifier.height(spacing.spaceMedium))
+
+            DaySelector(
+                date = state.date,
+                onPreviousDayClick = {
+                    viewModel.onEvent(TrackerOverviewEvent.OnPreviousDayClick)
+                },
+                onNextDayClick = {
+                    viewModel.onEvent(TrackerOverviewEvent.OnNextDayClick)
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = spacing.spaceMedium)
+            )
+
+            Spacer(modifier = Modifier.height(spacing.spaceMedium))
         }
     }
 }

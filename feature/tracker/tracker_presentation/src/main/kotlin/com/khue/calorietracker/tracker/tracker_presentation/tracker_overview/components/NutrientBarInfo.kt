@@ -95,6 +95,9 @@ fun NutrientBarInfo(
                 amountColor = if (value <= goal)
                     MaterialTheme.colorScheme.onPrimary
                 else goalExceededColor,
+                unitColor = if (value <= goal)
+                    MaterialTheme.colorScheme.onPrimary
+                else goalExceededColor,
             )
             Text(
                 text = name,
