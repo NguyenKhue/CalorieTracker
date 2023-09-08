@@ -20,23 +20,27 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavOptions
+import com.khue.calorietracker.core.common.R
 import com.khue.calorietracker.core.common.util.UiEvent
 import com.khue.calorietracker.core.designsystem.ui.theme.LocalSpacing
 import com.khue.calorietracker.core.preferences.domain.model.GoalType
-import com.khue.calorietracker.core.common.R
 import com.khue.calorietracker.onboarding.onboarding_presentation.components.ActionButton
 import com.khue.calorietracker.onboarding.onboarding_presentation.components.SelectableButton
 
 @Composable
 internal fun GoalRoute(
-    onNavigateToAgeScreen: (NavOptions?) -> Unit,
+    onNavigateToNutrientGoalScreen: (NavOptions?) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: GoalViewModel = hiltViewModel(),
 ) {
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when (event) {
-                is UiEvent.Navigate -> onNavigateToAgeScreen(null)
+                is UiEvent.Navigate -> {
+                    when(event.navigateEvent) {
+                        is GoalNavigationEvent.NavigateToNutrientGoalScreen -> onNavigateToNutrientGoalScreen(null)
+                    }
+                }
                 else -> Unit
             }
         }

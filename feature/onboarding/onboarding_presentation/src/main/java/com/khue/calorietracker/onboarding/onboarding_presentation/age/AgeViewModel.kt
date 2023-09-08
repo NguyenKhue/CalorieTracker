@@ -10,7 +10,6 @@ import com.khue.calorietracker.core.common.util.UiEvent
 import com.khue.calorietracker.core.common.util.UiText
 import com.khue.calorietracker.core.domain.use_case.FilterOutDigits
 import com.khue.calorietracker.core.preferences.domain.preferences.Preferences
-import com.khue.calorietracker.onboarding.onboarding_presentation.height.navigation.heightRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -48,7 +47,7 @@ class AgeViewModel @Inject constructor(
                 return@launch
             }
             preferences.saveAge(ageNumber)
-            _uiEvent.send(UiEvent.Navigate(heightRoute))
+            _uiEvent.send(UiEvent.Navigate(navigateEvent = AgeNavigationEvent.NavigateToHeightScreen))
         }
     }
 }

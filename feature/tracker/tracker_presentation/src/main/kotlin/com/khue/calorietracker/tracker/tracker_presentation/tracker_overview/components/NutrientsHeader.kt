@@ -25,6 +25,7 @@ import com.khue.calorietracker.core.designsystem.ui.theme.CarbColor
 import com.khue.calorietracker.core.designsystem.ui.theme.FatColor
 import com.khue.calorietracker.core.designsystem.ui.theme.LocalSpacing
 import com.khue.calorietracker.core.designsystem.ui.theme.ProteinColor
+import com.khue.calorietracker.core.ui.DevicePreviews
 import com.khue.calorietracker.tracker.tracker_presentation.components.UnitDisplay
 import com.khue.calorietracker.tracker.tracker_presentation.tracker_overview.TrackerOverviewState
 
@@ -128,4 +129,21 @@ fun NutrientsHeader(
             )
         }
     }
+}
+
+@DevicePreviews
+@Composable
+fun NutrientsHeaderPrev() {
+    NutrientsHeader(
+        state = TrackerOverviewState(
+            totalCarbs = 100,
+            totalProtein = 100,
+            totalFat = 100,
+            totalCalories = 1000,
+            carbsGoal = 150,
+            proteinGoal = 150,
+            fatGoal = 150,
+            caloriesGoal = 2000
+        )
+    )
 }

@@ -40,7 +40,11 @@ internal fun AgeRoute(
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when(event) {
-                is UiEvent.Navigate -> onNavigateToHeightScreen(null)
+                is UiEvent.Navigate -> {
+                    when(event.navigateEvent) {
+                        is AgeNavigationEvent.NavigateToHeightScreen -> onNavigateToHeightScreen(null)
+                    }
+                }
                 is UiEvent.ShowSnackbar -> {
                     onShowSnackbar(event.message.asString(context), null)
                 }

@@ -49,7 +49,11 @@ internal fun NutrientGoalRoute(
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when(event) {
-                is UiEvent.Navigate -> onNavigateToTrackerOverviewScreen(null)
+                is UiEvent.Navigate -> {
+                    when(event.navigateEvent) {
+                        is NutrientGoalNavigationEvent.NavigateToTrackerOverView -> onNavigateToTrackerOverviewScreen(null)
+                    }
+                }
                 is UiEvent.ShowSnackbar -> {
                     onShowSnackbar(event.message.asString(context), null)
                 }

@@ -9,5 +9,4 @@ android {
 
 dependencies {
     implementation(project(":feature:onboarding:onboarding_domain"))
-    implementation(project(":feature:tracker:tracker_presentation"))
 }

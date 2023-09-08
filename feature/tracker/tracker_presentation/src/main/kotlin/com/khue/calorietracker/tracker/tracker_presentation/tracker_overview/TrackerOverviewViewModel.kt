@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.khue.calorietracker.core.common.util.UiEvent
 import com.khue.calorietracker.core.preferences.domain.preferences.Preferences
-import com.khue.calorietracker.core.ui.navigation.Route
 import com.khue.calorietracker.tracker.tracker_domain.use_case.TrackerUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -71,10 +70,7 @@ class TrackerOverviewViewModel @Inject constructor(
                 viewModelScope.launch {
                     _uiEvent.send(
                         UiEvent.Navigate(
-                            route = Route.SEARCH
-                                    + "/${state.date.dayOfMonth}"
-                                    + "/${state.date.monthValue}"
-                                    + "/${state.date.year}"
+                            navigateEvent = TrackerOverViewNavigationEvent.NavigateToSearch(state.date)
                         )
                     )
                 }

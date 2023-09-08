@@ -40,11 +40,14 @@ internal fun HeightRoute(
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when (event) {
-                is UiEvent.Navigate -> onNavigateToWeightScreen(null)
+                is UiEvent.Navigate -> {
+                    when(event.navigateEvent) {
+                        is HeightNavigationEvent.NavigateToWeightScreen -> onNavigateToWeightScreen(null)
+                    }
+                }
                 is UiEvent.ShowSnackbar -> {
                     onShowSnackbar(event.message.asString(context), null)
                 }
-
                 else -> Unit
             }
         }

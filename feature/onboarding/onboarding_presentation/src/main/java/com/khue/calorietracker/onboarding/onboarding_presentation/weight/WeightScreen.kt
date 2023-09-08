@@ -30,7 +30,7 @@ import com.khue.calorietracker.onboarding.onboarding_presentation.components.Wei
 
 @Composable
 internal fun WeightRoute(
-    onNavigateToWeightScreen: (NavOptions?) -> Unit,
+    onNavigateToActivityLevelScreen: (NavOptions?) -> Unit,
     onShowSnackbar: suspend (String, String?) -> Boolean,
     modifier: Modifier = Modifier,
     viewModel: WeightViewModel = hiltViewModel(),
@@ -41,7 +41,11 @@ internal fun WeightRoute(
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when(event) {
-                is UiEvent.Navigate -> onNavigateToWeightScreen(null)
+                is UiEvent.Navigate -> {
+                    when(event.navigateEvent) {
+                        is WeightNavigationEvent.NavigateToActivityLevelScreen -> onNavigateToActivityLevelScreen(null)
+                    }
+                }
                 is UiEvent.ShowSnackbar -> {
                     onShowSnackbar(event.message.asString(context), null)
                 }

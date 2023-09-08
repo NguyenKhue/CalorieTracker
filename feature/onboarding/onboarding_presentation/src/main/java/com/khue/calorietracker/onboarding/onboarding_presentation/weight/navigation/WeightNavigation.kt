@@ -17,6 +17,6 @@ fun NavGraphBuilder.weightScreen(
     onShowSnackbar: suspend (String, String?) -> Boolean,
 ) {
     composable(route = weightRoute) {
-        WeightRoute(onNavigateToWeightScreen = onNavigateToActivityLevelScreen, onShowSnackbar = onShowSnackbar)
+        WeightRoute(onNavigateToActivityLevelScreen = onNavigateToActivityLevelScreen, onShowSnackbar = onShowSnackbar)
     }
 }
