@@ -22,7 +22,10 @@ import com.khue.calorietracker.onboarding.onboarding_presentation.weight.navigat
 import com.khue.calorietracker.onboarding.onboarding_presentation.weight.navigation.weightScreen
 import com.khue.calorietracker.onboarding.onboarding_presentation.welcome.navigation.welcomeScreen
 import com.khue.calorietracker.tracker.tracker_presentation.navigation.trackerGraph
+import com.khue.calorietracker.tracker.tracker_presentation.search.navigation.navigateToSearch
+import com.khue.calorietracker.tracker.tracker_presentation.search.navigation.searchScreen
 import com.khue.calorietracker.tracker.tracker_presentation.tracker_overview.navigation.navigateToTrackerOverview
+import com.khue.calorietracker.tracker.tracker_presentation.tracker_overview.navigation.trackerOverviewScreen
 
 @Composable
 fun CalorieTrackerNavHost(
@@ -43,19 +46,38 @@ fun CalorieTrackerNavHost(
 
             genderScreen(onNavigateToAgeScreen = navController::navigateToAge)
 
-            ageScreen(onNavigateToHeightScreen = navController::navigateToHeight, onShowSnackbar = onShowSnackbar)
+            ageScreen(
+                onNavigateToHeightScreen = navController::navigateToHeight,
+                onShowSnackbar = onShowSnackbar
+            )
 
-            heightScreen(onNavigateToWeightScreen = navController::navigateToWeight, onShowSnackbar = onShowSnackbar)
+            heightScreen(
+                onNavigateToWeightScreen = navController::navigateToWeight,
+                onShowSnackbar = onShowSnackbar
+            )
 
-            weightScreen(onNavigateToActivityLevelScreen = navController::navigateToActivityLevel, onShowSnackbar = onShowSnackbar)
+            weightScreen(
+                onNavigateToActivityLevelScreen = navController::navigateToActivityLevel,
+                onShowSnackbar = onShowSnackbar
+            )
 
             activityLevelScreen(onNavigateToGoalScreen = navController::navigateToGoal)
 
             goalScreen(onNavigateToNutrientGoalScreen = navController::navigateToNutrientGoal)
 
-            nutrientGoalScreen(onNavigateToTrackerOverviewScreen = navController::navigateToTrackerOverview, onShowSnackbar = onShowSnackbar)
+            nutrientGoalScreen(
+                onNavigateToTrackerOverviewScreen = navController::navigateToTrackerOverview,
+                onShowSnackbar = onShowSnackbar
+            )
         }
 
-        trackerGraph(navController = navController, onShowSnackbar = onShowSnackbar)
+        trackerGraph {
+            trackerOverviewScreen(onNavigateToSearchScreen = navController::navigateToSearch)
+
+            searchScreen(
+                onNavigateUp = navController::navigateUp,
+                onShowSnackbar = onShowSnackbar
+            )
+        }
     }
 }

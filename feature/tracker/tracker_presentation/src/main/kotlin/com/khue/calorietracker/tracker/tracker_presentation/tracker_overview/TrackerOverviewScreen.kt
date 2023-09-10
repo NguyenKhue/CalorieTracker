@@ -10,10 +10,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavOptions
 import com.khue.calorietracker.core.common.R
 import com.khue.calorietracker.core.common.util.UiEvent
 import com.khue.calorietracker.core.designsystem.ui.theme.LocalSpacing
@@ -26,12 +28,33 @@ import com.khue.calorietracker.tracker.tracker_presentation.tracker_overview.com
 
 @Composable
 internal fun TrackerOverviewRoute(
-    onNavigate: (UiEvent.Navigate) -> Unit,
+    onNavigateToSearchScreen: (String, Int, Int, Int, NavOptions?) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: TrackerOverviewViewModel = hiltViewModel()
 ) {
+
+    LaunchedEffect(key1 = Unit) {
+        viewModel.uiEvent.collect { event ->
+            when (event) {
+                is UiEvent.Navigate -> {
+                    when(event.navigateEvent) {
+                        is TrackerOverviewNavigationEvent.NavigateToSearch -> {
+                            onNavigateToSearchScreen(
+                                (event.navigateEvent as TrackerOverviewNavigationEvent.NavigateToSearch).mealName,
+                                (event.navigateEvent as TrackerOverviewNavigationEvent.NavigateToSearch).date.dayOfMonth,
+                                (event.navigateEvent as TrackerOverviewNavigationEvent.NavigateToSearch).date.monthValue,
+                                (event.navigateEvent as TrackerOverviewNavigationEvent.NavigateToSearch).date.year,
+                                null
+                            )
+                        }
+                    }
+                }
+                else -> Unit
+            }
+        }
+    }
+
     TrackerOverviewScreen(
-        onNavigate = onNavigate,
         modifier = modifier,
         onEvent = viewModel::onEvent,
         state = viewModel.state
@@ -40,7 +63,6 @@ internal fun TrackerOverviewRoute(
 
 @Composable
 fun TrackerOverviewScreen(
-    onNavigate: (UiEvent.Navigate) -> Unit,
     modifier: Modifier,
     onEvent: (TrackerOverviewEvent) -> Unit,
     state: TrackerOverviewState
@@ -100,7 +122,7 @@ fun TrackerOverviewScreen(
                                 meal.name.asString(context)
                             ),
                             onClick = {
-                                onEvent(TrackerOverviewEvent.OnAddFoodClick(meal))
+                                onEvent(TrackerOverviewEvent.OnAddFoodClick(meal.name.asString(context)))
                             },
                             modifier = Modifier
                                 .fillMaxWidth()

@@ -14,6 +14,7 @@ import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.core.view.WindowCompat
 import com.khue.calorietracker.core.designsystem.ui.theme.CalorieTrackerTheme
 import com.khue.calorietracker.navigation.CalorieTrackerNavHost
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,6 +24,9 @@ class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         setContent {
             CalorieTrackerTheme {
 

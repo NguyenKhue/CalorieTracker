@@ -12,8 +12,10 @@ fun NavController.navigateToTrackerOverview(navOptions: NavOptions? = null) {
     this.navigate(trackerOverviewRoute, navOptions)
 }
 
-fun NavGraphBuilder.trackerOverviewScreen() {
+fun NavGraphBuilder.trackerOverviewScreen(
+    onNavigateToSearchScreen: (String, Int, Int, Int, NavOptions?) -> Unit
+) {
     composable(route = trackerOverviewRoute) {
-        TrackerOverviewRoute(onNavigate = {})
+        TrackerOverviewRoute(onNavigateToSearchScreen = onNavigateToSearchScreen)
     }
 }

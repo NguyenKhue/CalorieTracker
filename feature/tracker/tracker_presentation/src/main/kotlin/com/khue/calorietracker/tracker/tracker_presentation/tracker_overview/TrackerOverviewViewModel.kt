@@ -70,7 +70,7 @@ class TrackerOverviewViewModel @Inject constructor(
                 viewModelScope.launch {
                     _uiEvent.send(
                         UiEvent.Navigate(
-                            navigateEvent = TrackerOverViewNavigationEvent.NavigateToSearch(state.date)
+                            navigateEvent = TrackerOverviewNavigationEvent.NavigateToSearch(event.mealName, state.date)
                         )
                     )
                 }
