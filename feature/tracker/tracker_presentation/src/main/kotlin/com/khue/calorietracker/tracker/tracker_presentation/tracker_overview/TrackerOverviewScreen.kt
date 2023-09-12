@@ -37,13 +37,13 @@ internal fun TrackerOverviewRoute(
         viewModel.uiEvent.collect { event ->
             when (event) {
                 is UiEvent.Navigate -> {
-                    when(event.navigateEvent) {
+                    when(event.navigationEvent) {
                         is TrackerOverviewNavigationEvent.NavigateToSearch -> {
                             onNavigateToSearchScreen(
-                                (event.navigateEvent as TrackerOverviewNavigationEvent.NavigateToSearch).mealName,
-                                (event.navigateEvent as TrackerOverviewNavigationEvent.NavigateToSearch).date.dayOfMonth,
-                                (event.navigateEvent as TrackerOverviewNavigationEvent.NavigateToSearch).date.monthValue,
-                                (event.navigateEvent as TrackerOverviewNavigationEvent.NavigateToSearch).date.year,
+                                (event.navigationEvent as TrackerOverviewNavigationEvent.NavigateToSearch).mealName,
+                                (event.navigationEvent as TrackerOverviewNavigationEvent.NavigateToSearch).date.dayOfMonth,
+                                (event.navigationEvent as TrackerOverviewNavigationEvent.NavigateToSearch).date.monthValue,
+                                (event.navigationEvent as TrackerOverviewNavigationEvent.NavigateToSearch).date.year,
                                 null
                             )
                         }

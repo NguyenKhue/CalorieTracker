@@ -41,7 +41,7 @@ internal fun HeightRoute(
         viewModel.uiEvent.collect { event ->
             when (event) {
                 is UiEvent.Navigate -> {
-                    when(event.navigateEvent) {
+                    when(event.navigationEvent) {
                         is HeightNavigationEvent.NavigateToWeightScreen -> onNavigateToWeightScreen(null)
                     }
                 }

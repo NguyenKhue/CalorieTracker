@@ -42,7 +42,7 @@ internal fun WeightRoute(
         viewModel.uiEvent.collect { event ->
             when(event) {
                 is UiEvent.Navigate -> {
-                    when(event.navigateEvent) {
+                    when(event.navigationEvent) {
                         is WeightNavigationEvent.NavigateToActivityLevelScreen -> onNavigateToActivityLevelScreen(null)
                     }
                 }

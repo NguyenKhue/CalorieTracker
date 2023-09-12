@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -16,16 +15,22 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.khue.calorietracker.core.designsystem.ui.theme.CalorieTrackerTheme
+import com.khue.calorietracker.core.preferences.domain.preferences.Preferences
 import com.khue.calorietracker.navigation.CalorieTrackerNavHost
+import com.khue.calorietracker.onboarding.onboarding_presentation.navigation.ONBOARDING_GRAPH_ROUTE_PATTERN
+import com.khue.calorietracker.tracker.tracker_presentation.navigation.TRACKER_GRAPH_ROUTE_PATTERN
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var preferences: Preferences
+
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        enableEdgeToEdge()
 
         setContent {
             CalorieTrackerTheme {
@@ -41,13 +46,20 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         snackbarHost = { SnackbarHost(snackbarHostState) },
                     ) {
-                        CalorieTrackerNavHost(onShowSnackbar = { message, action ->
-                            snackbarHostState.showSnackbar(
-                                message = message,
-                                actionLabel = action,
-                                duration = SnackbarDuration.Short,
-                            ) == SnackbarResult.ActionPerformed
-                        })
+                        CalorieTrackerNavHost(
+                            onShowSnackbar = { message, action ->
+                                snackbarHostState.showSnackbar(
+                                    message = message,
+                                    actionLabel = action,
+                                    duration = SnackbarDuration.Short,
+                                ) == SnackbarResult.ActionPerformed
+                            },
+                            startDestination = if (preferences.loadShouldShowOnboarding()) {
+                                ONBOARDING_GRAPH_ROUTE_PATTERN
+                            } else {
+                                TRACKER_GRAPH_ROUTE_PATTERN
+                            }
+                        )
                     }
                 }
             }

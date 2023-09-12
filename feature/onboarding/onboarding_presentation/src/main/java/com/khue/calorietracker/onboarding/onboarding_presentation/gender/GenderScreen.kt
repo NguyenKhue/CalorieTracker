@@ -38,7 +38,7 @@ internal fun GenderRoute(
         viewModel.uiEvent.collect { event ->
             when (event) {
                 is UiEvent.Navigate -> {
-                    when(event.navigateEvent) {
+                    when(event.navigationEvent) {
                         is GenderNavigationEvent.NavigateToAgeScreen -> onNavigateToAgeScreen(null)
                     }
                 }

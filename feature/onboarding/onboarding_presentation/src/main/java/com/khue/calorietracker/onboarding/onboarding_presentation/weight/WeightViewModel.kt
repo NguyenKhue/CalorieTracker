@@ -38,7 +38,7 @@ class WeightViewModel @Inject constructor(
                 return@launch
             }
             preferences.saveWeight(weightNumber)
-            _uiEvent.send(UiEvent.Navigate(navigateEvent = WeightNavigationEvent.NavigateToActivityLevelScreen))
+            _uiEvent.send(UiEvent.Navigate(navigationEvent = WeightNavigationEvent.NavigateToActivityLevelScreen))
         }
     }
 }

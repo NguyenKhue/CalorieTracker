@@ -37,7 +37,7 @@ internal fun GoalRoute(
         viewModel.uiEvent.collect { event ->
             when (event) {
                 is UiEvent.Navigate -> {
-                    when(event.navigateEvent) {
+                    when(event.navigationEvent) {
                         is GoalNavigationEvent.NavigateToNutrientGoalScreen -> onNavigateToNutrientGoalScreen(null)
                     }
                 }

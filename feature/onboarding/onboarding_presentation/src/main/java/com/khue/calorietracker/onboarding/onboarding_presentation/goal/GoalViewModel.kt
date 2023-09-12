@@ -32,7 +32,7 @@ class GoalViewModel @Inject constructor(
     fun onNextClick() {
         viewModelScope.launch {
             preferences.saveGoalType(selectedGoalType)
-            _uiEvent.send(UiEvent.Navigate(navigateEvent = GoalNavigationEvent.NavigateToNutrientGoalScreen))
+            _uiEvent.send(UiEvent.Navigate(navigationEvent = GoalNavigationEvent.NavigateToNutrientGoalScreen))
         }
     }
 

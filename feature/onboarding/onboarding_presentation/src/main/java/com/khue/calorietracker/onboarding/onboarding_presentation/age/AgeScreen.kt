@@ -41,7 +41,7 @@ internal fun AgeRoute(
         viewModel.uiEvent.collect { event ->
             when(event) {
                 is UiEvent.Navigate -> {
-                    when(event.navigateEvent) {
+                    when(event.navigationEvent) {
                         is AgeNavigationEvent.NavigateToHeightScreen -> onNavigateToHeightScreen(null)
                     }
                 }
