@@ -30,7 +30,7 @@ fun SearchTextField(
     hint: String = stringResource(id = R.string.search),
     shouldShowHint: Boolean = false,
     onFocusChanged: (FocusState) -> Unit,
-    content: @Composable() (ColumnScope.() -> Unit)
+    content: @Composable (ColumnScope.() -> Unit)
 ) {
 
     var active by rememberSaveable { mutableStateOf(false) }
