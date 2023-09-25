@@ -52,15 +52,15 @@ android {
 
 dependencies {
 
-    implementation(project(":core:ui"))
-    implementation(project(":core:preferences"))
-    implementation(project(":core:common"))
-    implementation(project(":core:designsystem"))
-    implementation(project(":feature:onboarding:onboarding_domain"))
-    implementation(project(":feature:onboarding:onboarding_presentation"))
-    implementation(project(":feature:tracker:tracker_data"))
-    implementation(project(":feature:tracker:tracker_domain"))
-    implementation(project(":feature:tracker:tracker_presentation"))
+    implementation(projects.core.ui)
+    implementation(projects.core.preferences)
+    implementation(projects.core.common)
+    implementation(projects.core.designsystem)
+    implementation(projects.feature.onboarding.onboardingDomain)
+    implementation(projects.feature.onboarding.onboardingPresentation)
+    implementation(projects.feature.tracker.trackerData)
+    implementation(projects.feature.tracker.trackerDomain)
+    implementation(projects.feature.tracker.trackerPresentation)
 
     implementation(libs.appcompat)
     implementation(libs.okHttp)

@@ -8,5 +8,5 @@ android {
 }
 
 dependencies {
-    implementation(project(":feature:onboarding:onboarding_domain"))
+    implementation(projects.feature.onboarding.onboardingDomain)
 }

@@ -15,6 +15,9 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "CalorieTracker"
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 include(":app")
 include(":feature:onboarding:onboarding_presentation")
 include(":feature:onboarding:onboarding_domain")
