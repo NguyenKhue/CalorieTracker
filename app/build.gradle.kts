@@ -2,12 +2,12 @@ import com.khue.calorietracker.CalorieTrackerBuildType
 
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    id("calorietracker.android.application")
-    id("calorietracker.android.application.compose")
-    id("calorietracker.android.application.flavors")
-    id("calorietracker.android.application.jacoco")
-    id("calorietracker.android.hilt")
-    id("calorietracker.android.room")
+    alias(libs.plugins.calorietracker.android.application)
+    alias(libs.plugins.calorietracker.android.application.compose)
+    alias(libs.plugins.calorietracker.android.application.flavors)
+    alias(libs.plugins.calorietracker.android.application.jacoco)
+    alias(libs.plugins.calorietracker.android.hilt)
+    alias(libs.plugins.calorietracker.android.room)
     id("jacoco")
 }
 

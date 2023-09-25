@@ -1,7 +1,7 @@
 plugins {
-    id("calorietracker.android.feature")
-    id("calorietracker.android.library.jacoco")
-    id("calorietracker.android.room")
+    alias(libs.plugins.calorietracker.android.feature)
+    alias(libs.plugins.calorietracker.android.library.jacoco)
+    alias(libs.plugins.calorietracker.android.room)
 }
 
 

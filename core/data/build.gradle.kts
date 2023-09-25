@@ -1,7 +1,7 @@
 plugins {
-    id("calorietracker.android.library")
-    id("calorietracker.android.library.jacoco")
-    id("calorietracker.android.hilt")
+    alias(libs.plugins.calorietracker.android.library)
+    alias(libs.plugins.calorietracker.android.library.jacoco)
+    alias(libs.plugins.calorietracker.android.hilt)
 }
 
 android {

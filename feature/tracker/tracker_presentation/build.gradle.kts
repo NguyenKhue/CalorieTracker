@@ -1,6 +1,6 @@
 plugins {
-    id("calorietracker.android.feature.compose")
-    id("calorietracker.android.library.jacoco")
+    alias(libs.plugins.calorietracker.android.feature.compose)
+    alias(libs.plugins.calorietracker.android.library.jacoco)
 }
 
 
